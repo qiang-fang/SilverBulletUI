@@ -18,9 +18,9 @@ function NavBar({ user, onUserChange }) {
   return (
     <Navbar fluid>
       <Navbar.Header>
-        <Navbar.Brand>Issue Tracker</Navbar.Brand>
+        <Navbar.Brand classname="hi">Silverbullet Scrumboard</Navbar.Brand>
       </Navbar.Header>
-      <Nav>
+      {/*<Nav>
         <LinkContainer exact to="/home">
           <NavItem>Home</NavItem>
         </LinkContainer>
@@ -30,12 +30,12 @@ function NavBar({ user, onUserChange }) {
         <LinkContainer to="/report">
           <NavItem>Report</NavItem>
         </LinkContainer>
-      </Nav>
-      <Col sm={5}>
+      </Nav> */}
+      {/*<Col sm={5}>
         <Navbar.Form>
           <Search />
         </Navbar.Form>
-      </Col>
+    </Col>}*/}
       <Nav pullRight>
         {/* <NavItem>
           <OverlayTrigger
