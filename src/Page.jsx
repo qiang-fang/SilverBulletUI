@@ -21,7 +21,7 @@ function NavBar({ user, onUserChange }) {
         <Navbar.Brand>Issue Tracker</Navbar.Brand>
       </Navbar.Header>
       <Nav>
-        <LinkContainer exact to="/">
+        <LinkContainer exact to="/home">
           <NavItem>Home</NavItem>
         </LinkContainer>
         <LinkContainer to="/issues">
