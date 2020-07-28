@@ -12,6 +12,9 @@ html {
 body {
   margin: 0;
 }
+button-gap {
+  padding-right: 20px;
+}
 article,
 aside,
 details,
