@@ -9,7 +9,7 @@ import graphQLFetch from './graphQLFetch.js';
 // import Toast from './Toast.jsx';
 import withToast from './withToast.jsx';
 
-class ProjectAddNavItem extends React.Component {
+class IssueAddNavItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -76,14 +76,14 @@ class ProjectAddNavItem extends React.Component {
           <OverlayTrigger
             placement="left"
             delayShow={1000}
-            overlay={<Tooltip id="create-issue">Create Scrumboard</Tooltip>}
+            overlay={<Tooltip id="create-issue">Create Issue</Tooltip>}
           >
             <Glyphicon glyph="plus" />
           </OverlayTrigger>
         </NavItem>
         <Modal keyboard show={showing} onHide={this.hideModal}>
           <Modal.Header closeButton>
-            <Modal.Title>Create Scrumboard</Modal.Title>
+            <Modal.Title>Create Issue</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form name="issueAdd">
@@ -92,8 +92,8 @@ class ProjectAddNavItem extends React.Component {
                 <FormControl name="title" autoFocus />
               </FormGroup>
               <FormGroup>
-                <ControlLabel>Label</ControlLabel>
-                <FormControl name="label" />
+                <ControlLabel>Owner</ControlLabel>
+                <FormControl name="owner" />
               </FormGroup>
             </Form>
           </Modal.Body>
@@ -122,4 +122,4 @@ class ProjectAddNavItem extends React.Component {
   }
 }
 
-export default withToast(withRouter(ProjectAddNavItem));
+export default withToast(withRouter(IssueAddNavItem));
