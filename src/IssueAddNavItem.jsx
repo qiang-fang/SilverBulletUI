@@ -73,12 +73,19 @@ class IssueAddNavItem extends React.Component {
     return (
       <React.Fragment>
         <NavItem disabled={!signedIn} onClick={this.showModal}>
+        {/*<OverlayTrigger
+            placement="left"
+            delayShow={1000}
+            overlay={<Tooltip id="create-issue">Create Issued</Tooltip>}
+          >
+            <button type="button" class="btn btn-primary">Create Issue</button>
+        </OverlayTrigger>*/}
           <OverlayTrigger
             placement="left"
             delayShow={1000}
-            overlay={<Tooltip id="create-issue">Create Issue</Tooltip>}
+            overlay={<Tooltip id="create-issue">Create Dashboard</Tooltip>}
           >
-            <Glyphicon glyph="plus" />
+            <button type="button" class="btn btn-primary">Create Dashboard</button>
           </OverlayTrigger>
         </NavItem>
         <Modal keyboard show={showing} onHide={this.hideModal}>
