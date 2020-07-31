@@ -1,5 +1,6 @@
 import React from 'react';
-// import './buttons.css'
+//import './buttons.css'
+//import image from '../images/Acadia.jpg'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 import Dashboard from './Dashboard.jsx'
 import Issues from './IssueList.jsx'
@@ -8,7 +9,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div><h1>Welcome to Silver ScrumBoadrd</h1>
+      <div><h1>Welcome to Silver ScrumBoard</h1>
         <span>
           <Link to={`/dashboard`}>
           <button 

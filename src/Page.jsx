@@ -62,21 +62,6 @@ function NavBar({ user, onUserChange }) {
   );
 }
 
-function Footer() {
-  return (
-    <small>
-      <hr />
-      <p className="text-center">
-        Full source code available at this
-        {' '}
-        <a href="https://github.ccs.neu.edu/NEU-CS5610-SU20/QiangFang-Book">
-          GitHub repository
-        </a>
-      </p>
-    </small>
-  );
-}
-
 export default class Page extends React.Component {
   static async fetchData(cookie) {
     const query = `query { user {
@@ -126,7 +111,6 @@ export default class Page extends React.Component {
             <Contents />
           </UserContext.Provider>
         </Grid>
-        <Footer />
       </div>
     );
   }
