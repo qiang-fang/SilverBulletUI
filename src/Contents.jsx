@@ -13,7 +13,7 @@ import routes from './routes.js';
 export default function Contents() {
   return (
     <Switch>
-      <Redirect exact from="/" to="/home"/>
+      <Redirect exact from="/" to="/home" />
       {/* <Route path="/issues" component={IssueList} />
       <Route path="/edit/:id" component={IssueEdit} />
       <Route path="/report" component={IssueReport} />
