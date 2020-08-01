@@ -70,7 +70,7 @@ class IssueRowPlain extends React.Component {
         </button> */}
           <OverlayTrigger delayShow={1000} overlay={closeTooltip}>
             <Button disabled={disabled} bsSize="xsmall" onClick={onClose}>
-              <Glyphicon glyph="remove" />
+              <Glyphicon glyph="arrow-right" />
             </Button>
           </OverlayTrigger>
           {/* {' | '} */}

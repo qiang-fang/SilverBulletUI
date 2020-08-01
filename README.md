@@ -12,3 +12,8 @@
 
 ![Home](/images/Home.png)
 ![Backlog](/images/BackLog.png)
+
+
+# Qiang Fang's Contribution: 
+- Focused on Dashboard.
+![Dashboard](/images/Dashboard.png)
