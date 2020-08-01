@@ -8,7 +8,7 @@ import {
 import graphQLFetch from './graphQLFetch.js';
 import withToast from './withToast.jsx';
 
-class IssueAddNavItem extends React.Component {
+class DashboardAddNavItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,11 +34,7 @@ class IssueAddNavItem extends React.Component {
     const form = document.forms.issueAdd;
     const issue = {
       title: form.title.value,
-      owner: form.owner.value,
-      status: form.status.value,
-      priority: form.priority.value,
-      effort: form.effort.value,
-      due: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 10),
+      label: form.label.value,
     };
     const query = `mutation issueAdd($issue: IssueInputs!) {
       issueAdd(issue: $issue) {
@@ -63,14 +59,14 @@ class IssueAddNavItem extends React.Component {
           <OverlayTrigger
             placement="left"
             delayShow={1000}
-            overlay={<Tooltip id="create-issue">Quickly assign a ticket here!</Tooltip>}
+            overlay={<Tooltip id="create-issue">Create a new dashboard here!</Tooltip>}
           >
-            <button type="button" class="btn btn-primary">Create Tickets</button>
+            <button type="button" class="btn btn-primary">Create Dashboards</button>
           </OverlayTrigger>
         </NavItem>
         <Modal keyboard show={showing} onHide={this.hideModal}>
           <Modal.Header closeButton>
-            <Modal.Title>Create A Ticket</Modal.Title>
+            <Modal.Title>Create A Dashboard</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form name="issueAdd">
@@ -79,28 +75,8 @@ class IssueAddNavItem extends React.Component {
                 <FormControl name="title" autoFocus />
               </FormGroup>
               <FormGroup>
-                <ControlLabel>Owner</ControlLabel>
-                <FormControl name="owner" />
-              </FormGroup>
-              <FormGroup>
-                <ControlLabel>Status</ControlLabel>
-                <FormControl name="status" />
-              </FormGroup>
-              <FormGroup>
-                <ControlLabel>Priority</ControlLabel>
-                <FormControl name="priority" />
-              </FormGroup>
-              <FormGroup>
-                <ControlLabel>effort</ControlLabel>
-                <FormControl name="effort" />
-              </FormGroup>
-              <FormGroup>
-                <ControlLabel>Due</ControlLabel>
-                <FormControl name="due" />
-              </FormGroup>
-              <FormGroup>
-                <ControlLabel>Description</ControlLabel>
-                <FormControl name="description" />
+                <ControlLabel>Label</ControlLabel>
+                <FormControl name="label" />
               </FormGroup>
             </Form>
           </Modal.Body>
@@ -122,4 +98,4 @@ class IssueAddNavItem extends React.Component {
   }
 }
 
-export default withToast(withRouter(IssueAddNavItem));
+export default withToast(withRouter(DashboardAddNavItem));

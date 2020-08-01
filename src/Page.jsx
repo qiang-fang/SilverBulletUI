@@ -8,6 +8,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import Contents from './Contents.jsx';
 import IssueAddNavItem from './IssueAddNavItem.jsx';
+import DashboardAddNavItem from './DashboardAddNavItem.jsx';
 import Search from './Search.jsx';
 import SignInNavItem from './SignInNavItem.jsx';
 import UserContext from './UserContext.js';
@@ -20,33 +21,9 @@ function NavBar({ user, onUserChange }) {
       <Navbar.Header>
         <Navbar.Brand classname="hi">Silverbullet Scrumboard</Navbar.Brand>
       </Navbar.Header>
-      {/*<Nav>
-        <LinkContainer exact to="/home">
-          <NavItem>Home</NavItem>
-        </LinkContainer>
-        <LinkContainer to="/issues">
-          <NavItem>Issue List</NavItem>
-        </LinkContainer>
-        <LinkContainer to="/report">
-          <NavItem>Report</NavItem>
-        </LinkContainer>
-      </Nav> */}
-      {/*<Col sm={5}>
-        <Navbar.Form>
-          <Search />
-        </Navbar.Form>
-    </Col>}*/}
       <Nav pullRight>
-        {/* <NavItem>
-          <OverlayTrigger
-            placement="left"
-            delayShow={1000}
-            overlay={<Tooltip id="create-issue">Create Issue</Tooltip>}
-          >
-            <Glyphicon glyph="plus" />
-          </OverlayTrigger>
-        </NavItem> */}
         <IssueAddNavItem user={user} />
+        <DashboardAddNavItem user={user} />
         <SignInNavItem user={user} onUserChange={onUserChange} />
         <NavDropdown
           id="user-dropdown"
