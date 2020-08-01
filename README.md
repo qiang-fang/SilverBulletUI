@@ -1,19 +1,19 @@
 # Silver Bullet Scrumboard 
 ## Group Members:
-Eric Cheng
-Qiang Fang
-Hui Li
+- Eric Cheng
+- Qiang Fang
+- Hui Li
 
 UI Repository: https://github.ccs.neu.edu/NEU-CS5610-SU20/GroupProject_Segfault_UI
 API Repository: https://github.ccs.neu.edu/NEU-CS5610-SU20/GroupProject_Segfault_API
 
 ### If running on a Mac OS, open two terminal windows:
-First, navigate to the API directory and run npm start to start the API.
-Second, navigate tothe UI directory and run npm run dev-all
+- First, navigate to the API directory and run npm start to start the API.
+- Second, navigate tothe UI directory and run npm run dev-all
 ### If running on a Windows OS, open three terminal windows and execute in order:
-First, navigate to the API directory and run npm start to start the API.
-Second, navigate to the UI directory and run npm run watch-server-hmr to watch files in the UI for hot module replacement recompilation.
-Third, navigate to the UI directory adn run npm start to start the UI.
+- First, navigate to the API directory and run npm start to start the API.
+- Second, navigate to the UI directory and run npm run watch-server-hmr to watch files in the UI for hot module replacement recompilation.
+- Third, navigate to the UI directory adn run npm start to start the UI.
 
 ## Iteration 1:
 ### Eric Cheng's Contribution: 
