@@ -17,3 +17,10 @@
 # Qiang Fang's Contribution: 
 - Focused on Dashboard.
 ![Dashboard](/images/Dashboard.png)
+
+# Hui Li's Contribution: 
+- Added two buttons on Homepage navigation bar for creating dashboards and tickets. Both two buttons are implemented with overlay trigger.
+- Both Tickets and Dashboard creation are implemented as Modals, which can be accessed from every webpages.
+- Disabled signIn feature for now will added that feature at last. Having issues with inserting a dashboard or a ticket into database. Will continued to alter the schema to make that happen.
+![dashboardModal](/images/dashboardModal.png)
+![ticketModal](/images/ticketModal.png)
