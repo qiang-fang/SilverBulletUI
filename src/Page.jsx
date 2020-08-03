@@ -19,7 +19,9 @@ function NavBar({ user, onUserChange }) {
   return (
     <Navbar fluid>
       <Navbar.Header>
-        <Navbar.Brand classname="hi">Silverbullet Scrumboard</Navbar.Brand>
+        <LinkContainer to="/home">
+          <Navbar.Brand classname="hi">Silverbullet Scrumboard</Navbar.Brand>
+        </LinkContainer>
       </Navbar.Header>
       <Nav pullRight>
         <IssueAddNavItem user={user} />
