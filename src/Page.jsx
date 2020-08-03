@@ -5,7 +5,7 @@ import {
   Grid, Col,
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-
+import { BrowserRouter, Route, Link } from 'react-router-dom'
 import Contents from './Contents.jsx';
 import IssueAddNavItem from './IssueAddNavItem.jsx';
 import DashboardAddNavItem from './DashboardAddNavItem.jsx';
@@ -19,9 +19,9 @@ function NavBar({ user, onUserChange }) {
   return (
     <Navbar fluid>
       <Navbar.Header>
-        <LinkContainer to="/home">
+        <Link to="/home">
           <Navbar.Brand classname="hi">Silverbullet Scrumboard</Navbar.Brand>
-        </LinkContainer>
+        </Link>
       </Navbar.Header>
       <Nav pullRight>
         <IssueAddNavItem user={user} />
