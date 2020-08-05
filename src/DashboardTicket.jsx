@@ -127,6 +127,8 @@ class DashboardTicket extends React.Component {
 
   componentDidUpdate(prevProps) {
     // const { location: { search: prevSearch } } = prevProps;
+    console.log('inside component did update.');
+
     const {
       location: { search: prevSearch },
       match: { params: { id: prevId } },

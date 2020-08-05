@@ -103,7 +103,28 @@ TicketRowPlain.contextType = UserContext;
 const IssueRow = withRouter(TicketRowPlain);
 delete IssueRow.contextType;
 
-export default function IssueTable({ issues, closeIssue, deleteIssue }) {
+export default function NewTable() {
+
+}
+
+export default function InprogressTable() {
+
+}
+
+export default function DoneTable() {
+  const IssueRows = issues.map((issue, index) => (
+    <IssueRow
+      key={issue.id}
+      issue={issue}
+      closeIssue={closeIssue}
+      deleteIssue={deleteIssue}
+      index={index}
+    />
+  ));
+}
+
+
+export default function TicketTable({ issues, closeIssue, deleteIssue }) {
   const IssueRows = issues.map((issue, index) => (
     <IssueRow
       key={issue.id}
