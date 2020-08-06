@@ -8,7 +8,8 @@ import {
 import { LinkContainer } from 'react-router-bootstrap';
 
 import IssueFilter from './IssueFilter.jsx';
-import IssueTable from './IssueTable.jsx';
+// import IssueTable from './IssueTable.jsx';
+import IssueTable from './TicketTable.jsx';
 // import IssueAdd from './IssueAdd.jsx';
 import IssueDetail from './IssueDetail.jsx';
 import graphQLFetch from './graphQLFetch.js';
@@ -111,7 +112,8 @@ class DashboardTicket extends React.Component {
       // toastType: 'info',
     };
     // this.createIssue = this.createIssue.bind(this);
-    this.closeIssue = this.closeIssue.bind(this);
+    this.assignIssue = this.assignIssue.bind(this);
+    this.fixIssue = this.fixIssue.bind(this);
     this.deleteIssue = this.deleteIssue.bind(this);
     // this.showSuccess = this.showSuccess.bind(this);
     // this.showError = this.showError.bind(this);
@@ -128,7 +130,6 @@ class DashboardTicket extends React.Component {
   componentDidUpdate(prevProps) {
     // const { location: { search: prevSearch } } = prevProps;
     console.log('inside component did update.');
-
     const {
       location: { search: prevSearch },
       match: { params: { id: prevId } },
@@ -152,21 +153,46 @@ class DashboardTicket extends React.Component {
     }
   }
 
-  async assignIssue(index) {
+  async assignIssue(id) {
     const query = `mutation issueClose($id: Int!) {
-      issueUpdate(id: $id, changes: { status: Closed }) {
+      issueUpdate(id: $id, changes: { status: Assigned }) {
         id title status owner
         effort created due description
       }
     }`;
     const { issues } = this.state;
+    console.log('issues in assignissue function: ', issues);
     const { showError } = this.props;
+    console.log('about to break');
+
+    //find index
+    let index;
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < issues.length; i++) {
+      if (issues[i].id === id) {
+        index = i;
+      }
+    }
+
     const data = await graphQLFetch(query, { id: issues[index].id }, showError);
     if (data) {
       this.setState((prevState) => {
         const newList = [...prevState.issues];
+        console.log('newLIst:', newList);
+        // var index;
+        // eslint-disable-next-line no-plusplus
+
         newList[index] = data.issueUpdate;
-        return { issues: newList };
+        
+        console.log('newLIst updated:',newList);
+
+        const newIssues = newList.filter(issue => issue.status === 'New');
+        const assignedIssues = newList.filter(issue => issue.status === 'Assigned');
+        const fixedIssues = newList.filter(issue => issue.status === 'Fixed');
+
+        return {
+          issues: newList, newIssues, assignedIssues, fixedIssues,
+        };
       });
     } else {
       this.loadData();
@@ -298,7 +324,7 @@ class DashboardTicket extends React.Component {
             </Panel.Heading>
             <IssueTable
               issues={newIssues}
-              closeIssue={this.closeIssue}
+              assignIssue={this.assignIssue}
               deleteIssue={this.deleteIssue}
             />
           </Panel>
