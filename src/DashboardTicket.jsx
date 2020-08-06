@@ -199,6 +199,52 @@ class DashboardTicket extends React.Component {
     }
   }
 
+  async fixIssue(id) {
+    const query = `mutation issueClose($id: Int!) {
+      issueUpdate(id: $id, changes: { status: Fixed }) {
+        id title status owner
+        effort created due description
+      }
+    }`;
+    const { issues } = this.state;
+    console.log('issues in fixissue function: ', issues);
+    const { showError } = this.props;
+
+    //find index
+    let index;
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < issues.length; i++) {
+      if (issues[i].id === id) {
+        index = i;
+      }
+    }
+
+    const data = await graphQLFetch(query, { id: issues[index].id }, showError);
+    if (data) {
+      this.setState((prevState) => {
+        const newList = [...prevState.issues];
+        console.log('newLIst:', newList);
+        // var index;
+        // eslint-disable-next-line no-plusplus
+
+        newList[index] = data.issueUpdate;
+        
+        console.log('newLIst updated:',newList);
+
+        const newIssues = newList.filter(issue => issue.status === 'New');
+        const assignedIssues = newList.filter(issue => issue.status === 'Assigned');
+        const fixedIssues = newList.filter(issue => issue.status === 'Fixed');
+
+        return {
+          issues: newList, newIssues, assignedIssues, fixedIssues,
+        };
+      });
+    } else {
+      this.loadData();
+    }
+  }
+
+
   async closeIssue(index) {
     const query = `mutation issueClose($id: Int!) {
       issueUpdate(id: $id, changes: { status: Closed }) {
