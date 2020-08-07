@@ -19,7 +19,7 @@ import UserContext from './UserContext.js';
 class IssueRowPlain extends React.Component {
   render() {
     const {
-      issue, location: { search }, closeIssue, deleteIssue, index,
+      issue, location: { search }, nextStage, deleteIssue, index, id,
     } = this.props;
     const user = this.context;
     const disabled = !user.signedIn;
@@ -29,14 +29,14 @@ class IssueRowPlain extends React.Component {
       <Tooltip id="close-tooltip" placement="top">Edit Issue</Tooltip>
     );
     const closeTooltip = (
-      <Tooltip id="close-tooltip" placement="top">Close Issue</Tooltip>
+      <Tooltip id="close-tooltip" placement="top">Next Stage</Tooltip>
     );
     const deleteTooltip = (
       <Tooltip id="delete-tooltip" placement="top">Delete Issue</Tooltip>
     );
-    function onClose(e) {
+    function onNext(e) {
       e.preventDefault();
-      closeIssue(index);
+      nextStage(id);
     }
     function onDelete(e) {
       e.preventDefault();
@@ -69,7 +69,7 @@ class IssueRowPlain extends React.Component {
           Close
         </button> */}
           <OverlayTrigger delayShow={1000} overlay={closeTooltip}>
-            <Button disabled={disabled} bsSize="xsmall" onClick={onClose}>
+            <Button disabled={disabled} bsSize="xsmall" onClick={onNext}>
               <Glyphicon glyph="arrow-right" />
             </Button>
           </OverlayTrigger>
@@ -99,14 +99,15 @@ IssueRowPlain.contextType = UserContext;
 const IssueRow = withRouter(IssueRowPlain);
 delete IssueRow.contextType;
 
-export default function IssueTable({ issues, closeIssue, deleteIssue }) {
+export default function IssueTable({ issues, nextStage, deleteIssue }) {
   const IssueRows = issues.map((issue, index) => (
     <IssueRow
       key={issue.id}
       issue={issue}
-      closeIssue={closeIssue}
+      nextStage={nextStage}
       deleteIssue={deleteIssue}
       index={index}
+      id={issue.id}
     />
   ));
   return (

@@ -12,7 +12,8 @@ class Home extends React.Component {
     return (
       <div><h1>Welcome to Silver ScrumBoard</h1>
         <span>
-          <Link to={`/dashboard`}>
+        <a href='/dashboard' >My Dashboard</a>
+          {/* <Link to={`/dashboard`}>
             <button
               type="button"
               class="btn btn-primary"
@@ -20,7 +21,7 @@ class Home extends React.Component {
             >
               My Dashboard
           </button>
-          </Link>
+          </Link> */}
           <Link to={`/issues`}>
             <button
               type="button"
