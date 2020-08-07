@@ -8,13 +8,23 @@ UI Repository: https://github.ccs.neu.edu/NEU-CS5610-SU20/GroupProject_Segfault_
 
 API Repository: https://github.ccs.neu.edu/NEU-CS5610-SU20/GroupProject_Segfault_API
 
+Heroku Links: https://silverbullet-ui-segfault.herokuapp.com
+
+
 ### If running on a Mac OS, open two terminal windows:
 - First, navigate to the API directory and run npm start to start the API.
 - Second, navigate tothe UI directory and run npm run dev-all
 ### If running on a Windows OS, open three terminal windows and execute in order:
 - First, navigate to the API directory and run npm start to start the API.
 - Second, navigate to the UI directory and run npm run watch-server-hmr to watch files in the UI for hot module replacement recompilation.
-- Third, navigate to the UI directory adn run npm start to start the UI.
+- Third, navigate to the UI directory and run npm start to start the UI.
+
+## Iteration 2:
+### Summary of Work Completed:
+- As we enter into Iteration 2 of the project we completed all the neccesary routings to the various components of the scrumboard application. After finalizing the structure of how UI of the application will be, we focused together as a collaboration on building the Dashboard component of the application. This includes having the ability to move the status of a ticket and will render automatically on the DOM. In iteration 2, we also explored shifting our backend to point to the database cloud but ran into some issues that we are working through via separate branches. 
+
+![Home2](/images/homepage.png)
+![Dashboard2](/images/Dashboard2.png)
 
 ## Iteration 1:
 ### Eric Cheng's Contribution: 
