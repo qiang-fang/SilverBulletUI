@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import {
   Form, FormControl, FormGroup, ControlLabel, Button,
 } from 'react-bootstrap';
-import './buttons.css'
+import './buttons.css';
+
 export default class IssueAdd extends React.Component {
   constructor() {
     super(); // constructor of parent class
@@ -34,7 +35,7 @@ export default class IssueAdd extends React.Component {
     // <div>This is a placeholder for a form to add an issue.</div>
     // rewrite the form declaration with a name and an onSubmit handler
       <Form inline name="issueAdd" onSubmit={this.handleSubmit}>
-         <button type="button" class="btn btn-primary">My Dashboard</button>
+        <button type="button" className="btn btn-primary">My Dashboard</button>
         {/* <input type="text" name="owner" placeholder="Owner" /> */}
         {/* <input type="text" name="title" placeholder="Title" /> */}
         {/* <button type="submit">Add</button> */}

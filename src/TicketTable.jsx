@@ -19,7 +19,7 @@ import UserContext from './UserContext.js';
 class IssueRowPlain extends React.Component {
   render() {
     const {
-      issue, location: { search }, assignIssue, deleteIssue, index, id,
+      issue, location: { search }, nextStage, deleteIssue, index, id,
     } = this.props;
     const user = this.context;
     const disabled = !user.signedIn;
@@ -29,33 +29,30 @@ class IssueRowPlain extends React.Component {
       <Tooltip id="close-tooltip" placement="top">Edit Issue</Tooltip>
     );
     const closeTooltip = (
-      <Tooltip id="close-tooltip" placement="top">Close Issue</Tooltip>
+      <Tooltip id="close-tooltip" placement="top">Next Stage</Tooltip>
     );
     const deleteTooltip = (
       <Tooltip id="delete-tooltip" placement="top">Delete Issue</Tooltip>
     );
-    // function onClose(e) {
-    //   e.preventDefault();
-    //   closeIssue(index);
-    // }
+    function onNext(e) {
+      e.preventDefault();
+      nextStage(id);
+    }
     function onDelete(e) {
       e.preventDefault();
       deleteIssue(index);
-    }
-    function onAssign(e) {
-      e.preventDefault();
-      assignIssue(id);
     }
 
     //   const issue = props.issue;
     const tableRow = (
       <tr>
         <td>{issue.id}</td>
+        <td>{issue.dashboardId}</td>
         <td>{issue.status}</td>
-        <td>{issue.owner}</td>
-        <td>{issue.created.toDateString()}</td>
-        <td>{issue.effort}</td>
-        <td>{issue.due ? issue.due.toDateString() : ''}</td>
+        {/* <td>{issue.owner}</td> */}
+        {/* <td>{issue.created.toDateString()}</td> */}
+        {/* <td>{issue.effort}</td> */}
+        {/* <td>{issue.due ? issue.due.toDateString() : ''}</td> */}
         <td>{issue.title}</td>
         {/* <td><Link to={`/edit/${issue.id}`}>Edit</Link></td> */}
         <td>
@@ -73,7 +70,7 @@ class IssueRowPlain extends React.Component {
           Close
         </button> */}
           <OverlayTrigger delayShow={1000} overlay={closeTooltip}>
-            <Button disabled={disabled} bsSize="xsmall" onClick={onAssign}>
+            <Button disabled={disabled} bsSize="xsmall" onClick={onNext}>
               <Glyphicon glyph="arrow-right" />
             </Button>
           </OverlayTrigger>
@@ -103,12 +100,12 @@ IssueRowPlain.contextType = UserContext;
 const IssueRow = withRouter(IssueRowPlain);
 delete IssueRow.contextType;
 
-export default function IssueTable({ issues, assignIssue, deleteIssue }) {
+export default function IssueTable({ issues, nextStage, deleteIssue }) {
   const IssueRows = issues.map((issue, index) => (
     <IssueRow
       key={issue.id}
       issue={issue}
-      assignIssue={assignIssue}
+      nextStage={nextStage}
       deleteIssue={deleteIssue}
       index={index}
       id={issue.id}
@@ -119,11 +116,12 @@ export default function IssueTable({ issues, assignIssue, deleteIssue }) {
       <thead>
         <tr>
           <th>ID</th>
+          <th>Dashboard ID</th>
           <th>Status</th>
-          <th>Owenr</th>
-          <th>Created</th>
-          <th>Effort</th>
-          <th>Due Date</th>
+          {/* <th>Owenr</th> */}
+          {/* <th>Created</th> */}
+          {/* <th>Effort</th> */}
+          {/* <th>Due Date</th> */}
           <th>Title</th>
           <th>Action</th>
         </tr>

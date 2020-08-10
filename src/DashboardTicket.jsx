@@ -8,8 +8,8 @@ import {
 import { LinkContainer } from 'react-router-bootstrap';
 
 import IssueFilter from './IssueFilter.jsx';
-import IssueTable from './IssueTable.jsx';
-// import IssueTable from './TicketTable.jsx';
+// import IssueTable from './IssueTable.jsx';
+import IssueTable from './TicketTable.jsx';
 // import IssueAdd from './IssueAdd.jsx';
 import IssueDetail from './IssueDetail.jsx';
 import graphQLFetch from './graphQLFetch.js';
@@ -70,7 +70,7 @@ class DashboardTicket extends React.Component {
         page: $page
       ) {
         issues {
-          id title 
+          id dashboardId title 
           status owner
           created effort due
         }
@@ -130,7 +130,6 @@ class DashboardTicket extends React.Component {
 
   componentDidUpdate(prevProps) {
     // const { location: { search: prevSearch } } = prevProps;
-    console.log('inside component did update.');
     const {
       location: { search: prevSearch },
       match: { params: { id: prevId } },
@@ -162,11 +161,9 @@ class DashboardTicket extends React.Component {
       }
     }`;
     const { issues } = this.state;
-    console.log('issues in assignissue function: ', issues);
     const { showError } = this.props;
-    console.log('about to break');
 
-    //find index
+    // find index
     let index;
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < issues.length; i++) {
@@ -179,14 +176,10 @@ class DashboardTicket extends React.Component {
     if (data) {
       this.setState((prevState) => {
         const newList = [...prevState.issues];
-        console.log('newLIst:', newList);
         // var index;
         // eslint-disable-next-line no-plusplus
 
         newList[index] = data.issueUpdate;
-        
-        console.log('newLIst updated:',newList);
-
         const newIssues = newList.filter(issue => issue.status === 'ToDo');
         const assignedIssues = newList.filter(issue => issue.status === 'InProgress');
         const fixedIssues = newList.filter(issue => issue.status === 'Done');
@@ -208,9 +201,8 @@ class DashboardTicket extends React.Component {
       }
     }`;
     const { issues } = this.state;
-    console.log('issues in fixissue function: ', issues);
     const { showError } = this.props;
-    //find index
+    // find index
     let index;
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < issues.length; i++) {
@@ -223,18 +215,13 @@ class DashboardTicket extends React.Component {
     if (data) {
       this.setState((prevState) => {
         const newList = [...prevState.issues];
-        console.log('newLIst:', newList);
         // var index;
         // eslint-disable-next-line no-plusplus
-
         newList[index] = data.issueUpdate;
 
         const newIssues = newList.filter(issue => issue.status === 'ToDo');
         const assignedIssues = newList.filter(issue => issue.status === 'InProgress');
         const fixedIssues = newList.filter(issue => issue.status === 'Done');
-        
-        console.log('fixissue after change:',fixedIssues);
-
         return {
           issues: newList, newIssues, assignedIssues, fixedIssues,
         };
@@ -255,7 +242,7 @@ class DashboardTicket extends React.Component {
     const { issues } = this.state;
     const { showError } = this.props;
 
-    //find index
+    // find index
     let index;
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < issues.length; i++) {
@@ -272,8 +259,6 @@ class DashboardTicket extends React.Component {
         // eslint-disable-next-line no-plusplus
 
         newList[index] = data.issueUpdate;
-        
-
         const newIssues = newList.filter(issue => issue.status === 'ToDo');
         const assignedIssues = newList.filter(issue => issue.status === 'InProgress');
         const fixedIssues = newList.filter(issue => issue.status === 'Done');
@@ -372,17 +357,6 @@ class DashboardTicket extends React.Component {
             <IssueFilter urlBase="/issues" />
           </Panel.Body>
         </Panel>
-        {/* <h1><Label>Issue Tracker</Label></h1> */}
-        {/* <IssueFilter /> */}
-        {/* <hr /> */}
-
-        {/* <Panel>
-          <IssueTable
-            issues={issues}
-            closeIssue={this.closeIssue}
-            deleteIssue={this.deleteIssue}
-          />
-        </Panel> */}
 
         <Col>
           <Panel>
@@ -396,6 +370,7 @@ class DashboardTicket extends React.Component {
             />
           </Panel>
         </Col>
+
         <Col>
           <Panel>
             <Panel.Heading>
@@ -420,7 +395,6 @@ class DashboardTicket extends React.Component {
             />
           </Panel>
         </Col>
-
 
         {/* <hr /> */}
         {/* <IssueAdd createIssue={this.createIssue} /> */}

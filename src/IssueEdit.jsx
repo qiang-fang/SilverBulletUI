@@ -220,10 +220,10 @@ class IssueEdit extends React.Component {
                   value={status}
                   onChange={this.onChange}
                 >
-                  <option value="New">New</option>
-                  <option value="Assigned">Assigned</option>
-                  <option value="Fixed">Fixed</option>
-                  <option value="Closed">Closed</option>
+                  <option value="ToDo">ToDo</option>
+                  <option value="InProgress">InProgress</option>
+                  <option value="Done">Done</option>
+                  <option value="SignedOff">SignedOff</option>
                 </FormControl>
               </Col>
             </FormGroup>
