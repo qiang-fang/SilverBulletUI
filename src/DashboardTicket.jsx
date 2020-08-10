@@ -172,6 +172,7 @@ class DashboardTicket extends React.Component {
     for (let i = 0; i < issues.length; i++) {
       if (issues[i].id === id) {
         index = i;
+        break;
       }
     }
 
@@ -217,6 +218,7 @@ class DashboardTicket extends React.Component {
     for (let i = 0; i < issues.length; i++) {
       if (issues[i].id === id) {
         index = i;
+        break;
       }
     }
 
@@ -260,6 +262,7 @@ class DashboardTicket extends React.Component {
     for (let i = 0; i < issues.length; i++) {
       if (issues[i].id === id) {
         index = i;
+        break;
       }
     }
 
