@@ -7,7 +7,7 @@ import {
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-import IssueFilter from './IssueFilter.jsx';
+import IssueFilter from './TicketFilter.jsx';
 // import IssueTable from './IssueTable.jsx';
 import IssueTable from './TicketTable.jsx';
 // import IssueAdd from './IssueAdd.jsx';
@@ -55,7 +55,7 @@ class DashboardTicket extends React.Component {
     if (Number.isNaN(page)) page = 1;
     vars.page = page;
 
-    const query = `query issueList(
+    const query = `query ticketList(
       $status: StatusType
       $effortMin: Int
       $effortMax: Int
@@ -63,7 +63,7 @@ class DashboardTicket extends React.Component {
       $selectedId: Int!
       $page: Int
     ) {
-      issueList(
+      ticketList(
         status: $status
         effortMin: $effortMin
         effortMax: $effortMax
