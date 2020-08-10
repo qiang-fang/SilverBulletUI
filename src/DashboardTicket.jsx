@@ -95,9 +95,9 @@ class DashboardTicket extends React.Component {
       issueList: { issues, pages }, issue: selectedIssue,
     } = initialData;
 
-    const newIssues = issues.filter(issue => issue.status === 'New');
-    const assignedIssues = issues.filter(issue => issue.status === 'Assigned');
-    const fixedIssues = issues.filter(issue => issue.status === 'Fixed');
+    const newIssues = issues.filter(issue => issue.status === 'ToDo');
+    const assignedIssues = issues.filter(issue => issue.status === 'InProgress');
+    const fixedIssues = issues.filter(issue => issue.status === 'Done');
 
     delete store.initialData;
     this.state = {
@@ -156,7 +156,7 @@ class DashboardTicket extends React.Component {
 
   async assignIssue(id) {
     const query = `mutation issueClose($id: Int!) {
-      issueUpdate(id: $id, changes: { status: Assigned }) {
+      issueUpdate(id: $id, changes: { status: InProgress }) {
         id title status owner
         effort created due description
       }
@@ -172,7 +172,6 @@ class DashboardTicket extends React.Component {
     for (let i = 0; i < issues.length; i++) {
       if (issues[i].id === id) {
         index = i;
-        break;
       }
     }
 
@@ -188,9 +187,9 @@ class DashboardTicket extends React.Component {
         
         console.log('newLIst updated:',newList);
 
-        const newIssues = newList.filter(issue => issue.status === 'New');
-        const assignedIssues = newList.filter(issue => issue.status === 'Assigned');
-        const fixedIssues = newList.filter(issue => issue.status === 'Fixed');
+        const newIssues = newList.filter(issue => issue.status === 'ToDo');
+        const assignedIssues = newList.filter(issue => issue.status === 'InProgress');
+        const fixedIssues = newList.filter(issue => issue.status === 'Done');
 
         return {
           issues: newList, newIssues, assignedIssues, fixedIssues,
@@ -203,7 +202,7 @@ class DashboardTicket extends React.Component {
 
   async fixIssue(id) {
     const query = `mutation issueClose($id: Int!) {
-      issueUpdate(id: $id, changes: { status: Fixed }) {
+      issueUpdate(id: $id, changes: { status: Done }) {
         id title status owner
         effort created due description
       }
@@ -211,14 +210,12 @@ class DashboardTicket extends React.Component {
     const { issues } = this.state;
     console.log('issues in fixissue function: ', issues);
     const { showError } = this.props;
-
     //find index
     let index;
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < issues.length; i++) {
       if (issues[i].id === id) {
         index = i;
-        break;
       }
     }
 
@@ -232,9 +229,11 @@ class DashboardTicket extends React.Component {
 
         newList[index] = data.issueUpdate;
 
-        const newIssues = newList.filter(issue => issue.status === 'New');
-        const assignedIssues = newList.filter(issue => issue.status === 'Assigned');
-        const fixedIssues = newList.filter(issue => issue.status === 'Fixed');
+        const newIssues = newList.filter(issue => issue.status === 'ToDo');
+        const assignedIssues = newList.filter(issue => issue.status === 'InProgress');
+        const fixedIssues = newList.filter(issue => issue.status === 'Done');
+        
+        console.log('fixissue after change:',fixedIssues);
 
         return {
           issues: newList, newIssues, assignedIssues, fixedIssues,
@@ -248,7 +247,7 @@ class DashboardTicket extends React.Component {
 
   async closeIssue(id) {
     const query = `mutation issueClose($id: Int!) {
-      issueUpdate(id: $id, changes: { status: Closed }) {
+      issueUpdate(id: $id, changes: { status: SignedOff }) {
         id title status owner
         effort created due description
       }
@@ -262,7 +261,6 @@ class DashboardTicket extends React.Component {
     for (let i = 0; i < issues.length; i++) {
       if (issues[i].id === id) {
         index = i;
-        break;
       }
     }
 
@@ -276,9 +274,9 @@ class DashboardTicket extends React.Component {
         newList[index] = data.issueUpdate;
         
 
-        const newIssues = newList.filter(issue => issue.status === 'New');
-        const assignedIssues = newList.filter(issue => issue.status === 'Assigned');
-        const fixedIssues = newList.filter(issue => issue.status === 'Fixed');
+        const newIssues = newList.filter(issue => issue.status === 'ToDo');
+        const assignedIssues = newList.filter(issue => issue.status === 'InProgress');
+        const fixedIssues = newList.filter(issue => issue.status === 'Done');
 
         return {
           issues: newList, newIssues, assignedIssues, fixedIssues,
@@ -389,7 +387,7 @@ class DashboardTicket extends React.Component {
         <Col>
           <Panel>
             <Panel.Heading>
-              <Panel.Title>New</Panel.Title>
+              <Panel.Title>ToDo</Panel.Title>
             </Panel.Heading>
             <IssueTable
               issues={newIssues}
@@ -401,7 +399,7 @@ class DashboardTicket extends React.Component {
         <Col>
           <Panel>
             <Panel.Heading>
-              <Panel.Title>Assigned</Panel.Title>
+              <Panel.Title>In Progress</Panel.Title>
             </Panel.Heading>
             <IssueTable
               issues={assignedIssues}
@@ -413,7 +411,7 @@ class DashboardTicket extends React.Component {
         <Col>
           <Panel>
             <Panel.Heading>
-              <Panel.Title>Fixed</Panel.Title>
+              <Panel.Title>Done</Panel.Title>
             </Panel.Heading>
             <IssueTable
               issues={fixedIssues}
