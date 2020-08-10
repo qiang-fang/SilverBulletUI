@@ -17,7 +17,6 @@ class IssueAddNavItem extends React.Component {
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
 
   showModal() {
@@ -65,7 +64,7 @@ class IssueAddNavItem extends React.Component {
             delayShow={1000}
             overlay={<Tooltip id="create-issue">Quickly assign a ticket here!</Tooltip>}
           >
-            <button type="button" class="btn btn-primary">Create Tickets</button>
+            <button type="button" className="btn btn-primary">Create Tickets</button>
           </OverlayTrigger>
         </NavItem>
         <Modal keyboard show={showing} onHide={this.hideModal}>

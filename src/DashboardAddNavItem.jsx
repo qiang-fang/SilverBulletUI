@@ -17,7 +17,6 @@ class DashboardAddNavItem extends React.Component {
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
 
   showModal() {
@@ -61,7 +60,7 @@ class DashboardAddNavItem extends React.Component {
             delayShow={1000}
             overlay={<Tooltip id="create-issue">Create a new dashboard here!</Tooltip>}
           >
-            <button type="button" class="btn btn-primary">Create Dashboards</button>
+            <button type="button" className="btn btn-primary">Create Dashboards</button>
           </OverlayTrigger>
         </NavItem>
         <Modal keyboard show={showing} onHide={this.hideModal}>

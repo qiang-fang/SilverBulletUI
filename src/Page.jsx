@@ -20,7 +20,7 @@ function NavBar({ user, onUserChange }) {
     <Navbar fluid>
       <Navbar.Header>
         <Link to="/home">
-          <Navbar.Brand classname="hi">Silverbullet Scrumboard</Navbar.Brand>
+          <Navbar.Brand className="hi">Silver Bullet Scrumboard</Navbar.Brand>
         </Link>
       </Navbar.Header>
       <Nav pullRight>
