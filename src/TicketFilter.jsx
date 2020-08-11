@@ -92,7 +92,7 @@ class IssueFilter extends React.Component {
       <Row>
         <Col xs={6} sm={4} md={3} lg={2}>
           <FormGroup>
-            <ControlLabel>Status:</ControlLabel>
+            <ControlLabel>Dashboard Title:</ControlLabel>
             <FormControl
               componentClass="select"
               value={status}

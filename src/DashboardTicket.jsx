@@ -56,7 +56,7 @@ class DashboardTicket extends React.Component {
     vars.page = page;
 
     const query = `query ticketList(
-      $status: StatusType
+      $status: String
       $effortMin: Int
       $effortMax: Int
       $hasSelection: Boolean!
@@ -146,11 +146,15 @@ class DashboardTicket extends React.Component {
   async loadData() {
     const { location: { search }, match, showError } = this.props;
     const data = await DashboardTicket.fetchData(match, search, showError);
+    console.log('dashboard ticket load data:<<<<<', data);
     if (data) {
       this.setState({
-        issues: data.issueList.issues,
+        issues: data.ticketList.issues,
         selectedIssue: data.issue,
-        pages: data.issueList.pages,
+        pages: data.ticketList.pages,
+        newIssues: data.ticketList.issues.filter(issue => issue.status === 'ToDo'),
+        assignedIssues: data.ticketList.issues.filter(issue => issue.status === 'InProgress'),
+        fixedIssues: data.ticketList.issues.filter(issue => issue.status === 'Done'),
       });
     }
   }
@@ -356,7 +360,7 @@ class DashboardTicket extends React.Component {
             <Panel.Title toggle>Filter</Panel.Title>
           </Panel.Heading>
           <Panel.Body collapsible>
-            <IssueFilter urlBase="/issues" />
+            <IssueFilter urlBase="/dashboard" />
           </Panel.Body>
         </Panel>
 

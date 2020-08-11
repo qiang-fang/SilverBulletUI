@@ -99,10 +99,10 @@ class IssueFilter extends React.Component {
               onChange={this.onChangeStatus}
             >
               <option value="">(All)</option>
-              <option value="New">New</option>
-              <option value="Assigned">Assigned</option>
-              <option value="Fixed">Fixed</option>
-              <option value="Closed">Closed</option>
+              <option value="ToDo">ToDo</option>
+              <option value="InProgress">InProgress</option>
+              <option value="Done">Done</option>
+              <option value="SignedOff">SignedOff</option>
             </FormControl>
           </FormGroup>
         </Col>
