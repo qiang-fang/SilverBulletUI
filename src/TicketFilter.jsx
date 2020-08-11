@@ -92,17 +92,17 @@ class IssueFilter extends React.Component {
       <Row>
         <Col xs={6} sm={4} md={3} lg={2}>
           <FormGroup>
-            <ControlLabel>Status:</ControlLabel>
+            <ControlLabel>Dashboard Title:</ControlLabel>
             <FormControl
               componentClass="select"
               value={status}
               onChange={this.onChangeStatus}
             >
               <option value="">(All)</option>
-              <option value="New">New</option>
-              <option value="Assigned">Assigned</option>
-              <option value="Fixed">Fixed</option>
-              <option value="Closed">Closed</option>
+              <option value="Project1">Project1</option>
+              <option value="Project2">Project2</option>
+              <option value="Project3">Project3</option>
+              <option value="Project4">Project4</option>
             </FormControl>
           </FormGroup>
         </Col>

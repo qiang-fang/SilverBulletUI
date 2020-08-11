@@ -56,7 +56,7 @@ class DashboardTicket extends React.Component {
     vars.page = page;
 
     const query = `query ticketList(
-      $status: StatusType
+      $status: String
       $effortMin: Int
       $effortMax: Int
       $hasSelection: Boolean!
@@ -90,9 +90,10 @@ class DashboardTicket extends React.Component {
     // const selectedIssue = store.initialData
     //   ? store.initialData.issue
     //   : null;
-    const initialData = store.initialData || { issueList: {} };
+    const initialData = store.initialData || { ticketList: {} };
+    console.log('*****inside constructor initial data:', initialData);
     const {
-      issueList: { issues, pages }, issue: selectedIssue,
+      ticketList: { issues, pages }, issue: selectedIssue,
     } = initialData;
 
     const newIssues = issues.filter(issue => issue.status === 'ToDo');
@@ -124,6 +125,7 @@ class DashboardTicket extends React.Component {
   // This method is called as soon as the IssueList component’s representation has been
   // converted and inserted into the DOM
   componentDidMount() {
+    console.log('start componentdidmount*****');
     const { issues } = this.state;
     if (issues == null) this.loadData();
   }
@@ -144,11 +146,15 @@ class DashboardTicket extends React.Component {
   async loadData() {
     const { location: { search }, match, showError } = this.props;
     const data = await DashboardTicket.fetchData(match, search, showError);
+    console.log('dashboard ticket load data:<<<<<', data);
     if (data) {
       this.setState({
-        issues: data.issueList.issues,
+        issues: data.ticketList.issues,
         selectedIssue: data.issue,
-        pages: data.issueList.pages,
+        pages: data.ticketList.pages,
+        newIssues: data.ticketList.issues.filter(issue => issue.status === 'ToDo'),
+        assignedIssues: data.ticketList.issues.filter(issue => issue.status === 'InProgress'),
+        fixedIssues: data.ticketList.issues.filter(issue => issue.status === 'Done'),
       });
     }
   }
@@ -354,7 +360,7 @@ class DashboardTicket extends React.Component {
             <Panel.Title toggle>Filter</Panel.Title>
           </Panel.Heading>
           <Panel.Body collapsible>
-            <IssueFilter urlBase="/issues" />
+            <IssueFilter urlBase="/dashboard" />
           </Panel.Body>
         </Panel>
 

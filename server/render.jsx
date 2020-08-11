@@ -11,6 +11,7 @@ import store from '../src/store.js';
 import routes from '../src/routes.js';
 
 async function render(req, res) {
+  console.log('start render >>>>>>>>>');
   // const body = ReactDOMServer.renderToString(<About />);
   // const initialData = await graphQLFetch('query{about}');
   // const initialData = About.fetchData();

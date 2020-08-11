@@ -35,8 +35,6 @@ class IssueAddNavItem extends React.Component {
       title: form.title.value,
       owner: form.owner.value,
       status: form.status.value,
-      priority: form.priority.value,
-      effort: form.effort.value,
       due: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 10),
     };
     const query = `mutation issueAdd($issue: IssueInputs!) {
@@ -84,14 +82,6 @@ class IssueAddNavItem extends React.Component {
               <FormGroup>
                 <ControlLabel>Status</ControlLabel>
                 <FormControl name="status" />
-              </FormGroup>
-              <FormGroup>
-                <ControlLabel>Priority</ControlLabel>
-                <FormControl name="priority" />
-              </FormGroup>
-              <FormGroup>
-                <ControlLabel>effort</ControlLabel>
-                <FormControl name="effort" />
               </FormGroup>
               <FormGroup>
                 <ControlLabel>Due</ControlLabel>
