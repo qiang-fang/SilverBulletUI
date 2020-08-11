@@ -90,9 +90,10 @@ class DashboardTicket extends React.Component {
     // const selectedIssue = store.initialData
     //   ? store.initialData.issue
     //   : null;
-    const initialData = store.initialData || { issueList: {} };
+    const initialData = store.initialData || { ticketList: {} };
+    console.log('*****inside constructor initial data:', initialData);
     const {
-      issueList: { issues, pages }, issue: selectedIssue,
+      ticketList: { issues, pages }, issue: selectedIssue,
     } = initialData;
 
     const newIssues = issues.filter(issue => issue.status === 'ToDo');
@@ -124,6 +125,7 @@ class DashboardTicket extends React.Component {
   // This method is called as soon as the IssueList component’s representation has been
   // converted and inserted into the DOM
   componentDidMount() {
+    console.log('start componentdidmount*****');
     const { issues } = this.state;
     if (issues == null) this.loadData();
   }
