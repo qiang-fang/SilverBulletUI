@@ -30,22 +30,23 @@ class DashboardAddNavItem extends React.Component {
   async handleSubmit(e) {
     e.preventDefault();
     this.hideModal();
-    const form = document.forms.issueAdd;
-    const issue = {
+    const form = document.forms.dashboardAdd;
+    const dashboard = {
       title: form.title.value,
       label: form.label.value,
     };
-    const query = `mutation issueAdd($issue: IssueInputs!) {
-      issueAdd(issue: $issue) {
+    const query = `mutation dashboardAdd($dashboard: DashboardInputs!) {
+      dashboardAdd(dashboard: $dashboard) {
         id
       }
     }`;
 
     const { showError } = this.props;
-    const data = await graphQLFetch(query, { issue }, showError);
+    const data = await graphQLFetch(query, { dashboard }, showError);
     if (data) {
       const { history } = this.props;
-      history.push(`/edit/${data.issueAdd.id}`);
+      //history.push(`/dashboard/${data.dashboardAdd.id}`);
+      history.push(`/dashboard`);
     }
   }
 
@@ -68,7 +69,7 @@ class DashboardAddNavItem extends React.Component {
             <Modal.Title>Create A Dashboard</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form name="issueAdd">
+            <Form name="dashboardAdd">
               <FormGroup>
                 <ControlLabel>Title</ControlLabel>
                 <FormControl name="title" autoFocus />
