@@ -87,6 +87,10 @@ class IssueFilter extends React.Component {
     // const { location: { search } } = this.props;
     // const params = new URLSearchParams(search);
     const { status, changed } = this.state;
+    const { options } = this.props;
+    console.log('ticketfilter render state:  ',this.state);
+    console.log('ticketfilter render props:  ',this.props);
+    console.log('ticketfilter render options', options);
     const { effortMin, effortMax } = this.state;
     return (
       <Row>
@@ -98,11 +102,13 @@ class IssueFilter extends React.Component {
               value={status}
               onChange={this.onChangeStatus}
             >
-              <option value="">(All)</option>
+              {options.map(option => <option value={option.title}>{option.title}</option>)
+              }
+              {/* <option value="">(All)</option>
               <option value="Project1">Project1</option>
               <option value="Project2">Project2</option>
               <option value="Project3">Project3</option>
-              <option value="Project4">Project4</option>
+              <option value="Project4">Project4</option> */}
             </FormControl>
           </FormGroup>
         </Col>

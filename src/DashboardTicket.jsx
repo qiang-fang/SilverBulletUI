@@ -79,10 +79,25 @@ class DashboardTicket extends React.Component {
       issue(id: $selectedId) @include (if : $hasSelection) {
         id description
       }
+      dashboardList {
+        title
+      }
     }`;
     const data = await graphQLFetch(query, vars, showError);
     return data;
   }
+
+  // static async loadOptions() {
+  //   const query = `query {
+  //     dashboardList {
+  //       title
+  //     }
+  //   }`;
+  //   console.log('loadoptions props:  ', this.props);
+  //   // const { showError } = this.props;
+  //   const data = await graphQLFetch(query, {});
+  //   console.log('loadoptions: ', data.dashboardList[0].title);
+  //   return data;
 
   constructor() {
     super();
@@ -93,9 +108,11 @@ class DashboardTicket extends React.Component {
     const initialData = store.initialData || { ticketList: {} };
     console.log('*****inside constructor initial data:', initialData);
     const {
-      ticketList: { issues, pages }, issue: selectedIssue,
+      ticketList: { issues, pages }, issue: selectedIssue, dashboardList: options,
     } = initialData;
-
+    // const options = DashboardTicket.loadOptions();
+    // const options = [];
+    // console.log('initilaze options: ', options);
     const newIssues = issues.filter(issue => issue.status === 'ToDo');
     const assignedIssues = issues.filter(issue => issue.status === 'InProgress');
     const fixedIssues = issues.filter(issue => issue.status === 'Done');
@@ -108,6 +125,7 @@ class DashboardTicket extends React.Component {
       fixedIssues,
       selectedIssue,
       pages,
+      options,
       // toastVisible: false,
       // toastMessage: ' ',
       // toastType: 'info',
@@ -117,17 +135,20 @@ class DashboardTicket extends React.Component {
     this.fixIssue = this.fixIssue.bind(this);
     this.closeIssue = this.closeIssue.bind(this);
     this.deleteIssue = this.deleteIssue.bind(this);
+    // this.loadOptions = this.loadOptions.bind(this);
     // this.showSuccess = this.showSuccess.bind(this);
     // this.showError = this.showError.bind(this);
     // this.dismissToast = this.dismissToast.bind(this);
+    console.log('at the end of constructor: ', this.state);
   }
 
   // This method is called as soon as the IssueList component’s representation has been
   // converted and inserted into the DOM
   componentDidMount() {
-    console.log('start componentdidmount*****');
     const { issues } = this.state;
-    if (issues == null) this.loadData();
+    if (issues == null) {
+      this.loadData();
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -146,7 +167,8 @@ class DashboardTicket extends React.Component {
   async loadData() {
     const { location: { search }, match, showError } = this.props;
     const data = await DashboardTicket.fetchData(match, search, showError);
-    console.log('dashboard ticket load data:<<<<<', data);
+    // fetch option data from dashboard table in DB
+    // const options = await DashboardTicket.loadOptions();
     if (data) {
       this.setState({
         issues: data.ticketList.issues,
@@ -155,6 +177,7 @@ class DashboardTicket extends React.Component {
         newIssues: data.ticketList.issues.filter(issue => issue.status === 'ToDo'),
         assignedIssues: data.ticketList.issues.filter(issue => issue.status === 'InProgress'),
         fixedIssues: data.ticketList.issues.filter(issue => issue.status === 'Done'),
+        options: data.dashboardList,
       });
     }
   }
@@ -177,12 +200,10 @@ class DashboardTicket extends React.Component {
         index = i;
       }
     }
-
     const data = await graphQLFetch(query, { id: issues[index].id }, showError);
     if (data) {
       this.setState((prevState) => {
         const newList = [...prevState.issues];
-        // var index;
         // eslint-disable-next-line no-plusplus
 
         newList[index] = data.issueUpdate;
@@ -216,12 +237,10 @@ class DashboardTicket extends React.Component {
         index = i;
       }
     }
-
     const data = await graphQLFetch(query, { id: issues[index].id }, showError);
     if (data) {
       this.setState((prevState) => {
         const newList = [...prevState.issues];
-        // var index;
         // eslint-disable-next-line no-plusplus
         newList[index] = data.issueUpdate;
 
@@ -236,7 +255,6 @@ class DashboardTicket extends React.Component {
       this.loadData();
     }
   }
-
 
   async closeIssue(id) {
     const query = `mutation issueClose($id: Int!) {
@@ -256,12 +274,10 @@ class DashboardTicket extends React.Component {
         index = i;
       }
     }
-
     const data = await graphQLFetch(query, { id: issues[index].id }, showError);
     if (data) {
       this.setState((prevState) => {
         const newList = [...prevState.issues];
-        // var index;
         // eslint-disable-next-line no-plusplus
 
         newList[index] = data.issueUpdate;
@@ -325,7 +341,7 @@ class DashboardTicket extends React.Component {
 
   render() {
     const {
-      issues, newIssues, assignedIssues, fixedIssues,
+      issues, newIssues, assignedIssues, fixedIssues, options,
     } = this.state;
     if (issues == null) return null;
     if (newIssues == null) return null;
@@ -353,6 +369,7 @@ class DashboardTicket extends React.Component {
         </PageLink>
       ));
     }
+    console.log('render before return: ', options);
     return (
       <React.Fragment>
         <Panel>
@@ -360,7 +377,10 @@ class DashboardTicket extends React.Component {
             <Panel.Title toggle>Filter</Panel.Title>
           </Panel.Heading>
           <Panel.Body collapsible>
-            <IssueFilter urlBase="/dashboard" />
+            <IssueFilter
+              urlBase="/dashboard"
+              options={options}
+            />
           </Panel.Body>
         </Panel>
 
