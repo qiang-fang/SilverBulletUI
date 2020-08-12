@@ -34,8 +34,9 @@ class IssueAddNavItem extends React.Component {
     const issue = {
       title: form.title.value,
       owner: form.owner.value,
-      status: form.status.value,
+      // status: form.status.value,
       due: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 10),
+      description: form.description.value,
     };
     const query = `mutation issueAdd($issue: IssueInputs!) {
       issueAdd(issue: $issue) {
@@ -56,7 +57,7 @@ class IssueAddNavItem extends React.Component {
     const { user: { signedIn } } = this.props;
     return (
       <React.Fragment>
-        <NavItem disabled={signedIn} onClick={this.showModal}>
+        <NavItem disabled={!signedIn} onClick={this.showModal}>
           <OverlayTrigger
             placement="left"
             delayShow={1000}
@@ -79,14 +80,14 @@ class IssueAddNavItem extends React.Component {
                 <ControlLabel>Owner</ControlLabel>
                 <FormControl name="owner" />
               </FormGroup>
-              <FormGroup>
+              {/* <FormGroup>
                 <ControlLabel>Status</ControlLabel>
                 <FormControl name="status" />
               </FormGroup>
               <FormGroup>
                 <ControlLabel>Due</ControlLabel>
                 <FormControl name="due" />
-              </FormGroup>
+              </FormGroup> */}
               <FormGroup>
                 <ControlLabel>Description</ControlLabel>
                 <FormControl name="description" />

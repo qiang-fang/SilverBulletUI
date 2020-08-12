@@ -55,7 +55,7 @@ class DashboardAddNavItem extends React.Component {
     const { user: { signedIn } } = this.props;
     return (
       <React.Fragment>
-        <NavItem disabled={signedIn} onClick={this.showModal}>
+        <NavItem disabled={!signedIn} onClick={this.showModal}>
           <OverlayTrigger
             placement="left"
             delayShow={1000}
