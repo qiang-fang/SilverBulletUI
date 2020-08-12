@@ -102,6 +102,7 @@ class IssueFilter extends React.Component {
               value={status}
               onChange={this.onChangeStatus}
             >
+              <option value="">(All)</option>
               {options.map(option => <option value={option.title}>{option.title}</option>)
               }
               {/* <option value="">(All)</option>
