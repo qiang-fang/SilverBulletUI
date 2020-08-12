@@ -3,7 +3,7 @@ import URLSearchParams from 'url-search-params';
 // import { Route } from 'react-router-dom';
 // import { Label } from 'react-bootstrap';
 import {
-  Panel, Pagination, Button, Col,
+  Panel, Pagination, Button, Col, Row,
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -372,77 +372,75 @@ class DashboardTicket extends React.Component {
     console.log('render before return: ', options);
     return (
       <React.Fragment>
-        <Panel>
-          <Panel.Heading>
-            <Panel.Title toggle>Filter</Panel.Title>
-          </Panel.Heading>
-          <Panel.Body collapsible>
-            <IssueFilter
-              urlBase="/dashboard"
-              options={options}
-            />
-          </Panel.Body>
-        </Panel>
+        <Row>
+          <Col>
+            <Panel>
+              <Panel.Heading>
+                <Panel.Title toggle>Filter</Panel.Title>
+              </Panel.Heading>
+              <Panel.Body collapsible>
+                <IssueFilter
+                  urlBase="/dashboard"
+                  options={options}
+                />
+              </Panel.Body>
+            </Panel>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={4}>
+            <Panel>
+              <Panel.Heading>
+                <Panel.Title>ToDo</Panel.Title>
+              </Panel.Heading>
+              <IssueTable
+                issues={newIssues}
+                nextStage={this.assignIssue}
+                deleteIssue={this.deleteIssue}
+              />
+            </Panel>
+          </Col>
 
-        <Col>
-          <Panel>
-            <Panel.Heading>
-              <Panel.Title>ToDo</Panel.Title>
-            </Panel.Heading>
-            <IssueTable
-              issues={newIssues}
-              nextStage={this.assignIssue}
-              deleteIssue={this.deleteIssue}
-            />
-          </Panel>
-        </Col>
+          <Col md={4}>
+            <Panel>
+              <Panel.Heading>
+                <Panel.Title>In Progress</Panel.Title>
+              </Panel.Heading>
+              <IssueTable
+                issues={assignedIssues}
+                nextStage={this.fixIssue}
+                deleteIssue={this.deleteIssue}
+              />
+            </Panel>
+          </Col>
 
-        <Col>
-          <Panel>
-            <Panel.Heading>
-              <Panel.Title>In Progress</Panel.Title>
-            </Panel.Heading>
-            <IssueTable
-              issues={assignedIssues}
-              nextStage={this.fixIssue}
-              deleteIssue={this.deleteIssue}
-            />
-          </Panel>
-        </Col>
-        <Col>
-          <Panel>
-            <Panel.Heading>
-              <Panel.Title>Done</Panel.Title>
-            </Panel.Heading>
-            <IssueTable
-              issues={fixedIssues}
-              nextStage={this.closeIssue}
-              deleteIssue={this.deleteIssue}
-            />
-          </Panel>
-        </Col>
+          <Col md={4}>
+            <Panel>
+              <Panel.Heading>
+                <Panel.Title>Done</Panel.Title>
+              </Panel.Heading>
+              <IssueTable
+                issues={fixedIssues}
+                nextStage={this.closeIssue}
+                deleteIssue={this.deleteIssue}
+              />
+            </Panel>
+          </Col>
+        </Row>
+        <Row>
+          <IssueDetail issue={selectedIssue} />
 
-        {/* <hr /> */}
-        {/* <IssueAdd createIssue={this.createIssue} /> */}
-        {/* <hr /> */}
-        {/* <Route path={`${match.path}/:id`} component={IssueDetail} /> */}
-        <IssueDetail issue={selectedIssue} />
-        {/* <Toast
-          showing={toastVisible}
-          onDismiss={this.dismissToast}
-          bsStyle={toastType}
-        >
-          {toastMessage}
-        </Toast> */}
-        <Pagination>
-          <PageLink params={params} page={prevSection}>
-            <Pagination.Item>{'<'}</Pagination.Item>
-          </PageLink>
-          {items}
-          <PageLink params={params} page={nextSection}>
-            <Pagination.Item>{'>'}</Pagination.Item>
-          </PageLink>
-        </Pagination>
+          <Pagination>
+            <PageLink params={params} page={prevSection}>
+              <Pagination.Item>{'<'}</Pagination.Item>
+            </PageLink>
+            {items}
+            <PageLink params={params} page={nextSection}>
+              <Pagination.Item>{'>'}</Pagination.Item>
+            </PageLink>
+          </Pagination>
+
+        </Row>
       </React.Fragment>
     );
   }

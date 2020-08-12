@@ -1,15 +1,16 @@
 import React from 'react';
 import {
-  Navbar, Nav, NavItem, NavDropdown,
+  Navbar, Nav, NavDropdown,
   MenuItem, Glyphicon,
-  Grid, Col,
+  Grid,
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+// import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Contents from './Contents.jsx';
 import IssueAddNavItem from './IssueAddNavItem.jsx';
 import DashboardAddNavItem from './DashboardAddNavItem.jsx';
-import Search from './Search.jsx';
+// import Search from './Search.jsx';
 import SignInNavItem from './SignInNavItem.jsx';
 import UserContext from './UserContext.js';
 import graphQLFetch from './graphQLFetch.js';

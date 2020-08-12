@@ -4,7 +4,8 @@ import React from 'react';
 // import './buttons.css';
 // import image from '../images/Acadia.jpg'
 
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+// import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Dashboard from './DashboardTicket.jsx';
 import Issues from './IssueList.jsx';
 
@@ -20,8 +21,7 @@ class Home extends React.Component {
       <div style={mystyle}>
         <h1>Welcome to Silver Bullet ScrumBoard</h1>
         <span>
-          <a href="/dashboard">My Dashboard</a>
-          {/* <Link to="/dashboard">
+          <a href="/dashboard">
             <button
               type="button"
               className="btn btn-primary"
@@ -29,9 +29,9 @@ class Home extends React.Component {
             >
               My Dashboard
             </button>
-          </Link> */}
+          </a>
         </span>
-          &nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;
         <span>
           <Link to="/issues">
             <button

@@ -88,9 +88,9 @@ class IssueFilter extends React.Component {
     // const params = new URLSearchParams(search);
     const { status, changed } = this.state;
     const { options } = this.props;
-    console.log('ticketfilter render state:  ',this.state);
-    console.log('ticketfilter render props:  ',this.props);
-    console.log('ticketfilter render options', options);
+    // console.log('ticketfilter render state:  ',this.state);
+    // console.log('ticketfilter render props:  ',this.props);
+    // console.log('ticketfilter render options', options);
     const { effortMin, effortMax } = this.state;
     return (
       <Row>

@@ -19,7 +19,7 @@ import UserContext from './UserContext.js';
 class IssueRowPlain extends React.Component {
   render() {
     const {
-      issue, location: { search }, nextStage, deleteIssue, index, id,
+      issue, location: { search }, closeIssue, deleteIssue, index,
     } = this.props;
     const user = this.context;
     const disabled = !user.signedIn;
@@ -29,14 +29,14 @@ class IssueRowPlain extends React.Component {
       <Tooltip id="close-tooltip" placement="top">Edit Issue</Tooltip>
     );
     const closeTooltip = (
-      <Tooltip id="close-tooltip" placement="top">Next Stage</Tooltip>
+      <Tooltip id="close-tooltip" placement="top">Sign Off Issue</Tooltip>
     );
     const deleteTooltip = (
       <Tooltip id="delete-tooltip" placement="top">Delete Issue</Tooltip>
     );
-    function onNext(e) {
+    function onClose(e) {
       e.preventDefault();
-      nextStage(id);
+      closeIssue(index);
     }
     function onDelete(e) {
       e.preventDefault();
@@ -69,8 +69,8 @@ class IssueRowPlain extends React.Component {
           Close
         </button> */}
           <OverlayTrigger delayShow={1000} overlay={closeTooltip}>
-            <Button disabled={disabled} bsSize="xsmall" onClick={onNext}>
-              <Glyphicon glyph="arrow-right" />
+            <Button disabled={disabled} bsSize="xsmall" onClick={onClose}>
+              <Glyphicon glyph="remove" />
             </Button>
           </OverlayTrigger>
           {/* {' | '} */}
@@ -99,15 +99,14 @@ IssueRowPlain.contextType = UserContext;
 const IssueRow = withRouter(IssueRowPlain);
 delete IssueRow.contextType;
 
-export default function IssueTable({ issues, nextStage, deleteIssue }) {
+export default function IssueTable({ issues, closeIssue, deleteIssue }) {
   const IssueRows = issues.map((issue, index) => (
     <IssueRow
       key={issue.id}
       issue={issue}
-      nextStage={nextStage}
+      closeIssue={closeIssue}
       deleteIssue={deleteIssue}
       index={index}
-      id={issue.id}
     />
   ));
   return (
@@ -116,7 +115,7 @@ export default function IssueTable({ issues, nextStage, deleteIssue }) {
         <tr>
           <th>ID</th>
           <th>Status</th>
-          <th>Owenr</th>
+          <th>Owner</th>
           <th>Created</th>
           <th>Effort</th>
           <th>Due Date</th>

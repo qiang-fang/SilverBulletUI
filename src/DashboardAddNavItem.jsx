@@ -1,7 +1,7 @@
 import React from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import {
-  NavItem, Glyphicon, Modal, Form, FormGroup, FormControl, ControlLabel,
+  NavItem, Modal, Form, FormGroup, FormControl, ControlLabel,
   Button, ButtonToolbar, Tooltip, OverlayTrigger,
 } from 'react-bootstrap';
 
@@ -44,8 +44,8 @@ class DashboardAddNavItem extends React.Component {
     const { showError } = this.props;
     const data = await graphQLFetch(query, { dashboard }, showError);
     if (data) {
-      const { history } = this.props;
-      //history.push(`/dashboard/${data.dashboardAdd.id}`);
+      // const { history } = this.props;
+      // history.push(`/dashboard/${data.dashboardAdd.id}`);
       // history.push(`/dashboard`);
       window.location.href = '/dashboard';
     }

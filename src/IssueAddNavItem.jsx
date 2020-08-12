@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import {
-  NavItem, Glyphicon, Modal, Form, FormGroup, FormControl, ControlLabel,
+  NavItem, Modal, Form, FormGroup, FormControl, ControlLabel,
   Button, ButtonToolbar, Tooltip, OverlayTrigger,
 } from 'react-bootstrap';
 
