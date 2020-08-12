@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import {
   NavItem, Glyphicon, Modal, Form, FormGroup, FormControl, ControlLabel,
   Button, ButtonToolbar, Tooltip, OverlayTrigger,
@@ -46,7 +46,8 @@ class DashboardAddNavItem extends React.Component {
     if (data) {
       const { history } = this.props;
       //history.push(`/dashboard/${data.dashboardAdd.id}`);
-      history.push(`/dashboard`);
+      // history.push(`/dashboard`);
+      window.location.href = '/dashboard';
     }
   }
 

@@ -18,7 +18,7 @@ class Home extends React.Component {
     };
     return (
       <div style={mystyle}>
-        <h1>Welcome to Silver ScrumBoard</h1>
+        <h1>Welcome to Silver Bullet ScrumBoard</h1>
         <span>
           <a href="/dashboard">My Dashboard</a>
           {/* <Link to="/dashboard">
