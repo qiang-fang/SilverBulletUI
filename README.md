@@ -19,9 +19,30 @@ Heroku Links: https://silverbullet-ui-segfault.herokuapp.com
 - Second, navigate to the UI directory and run npm run watch-server-hmr to watch files in the UI for hot module replacement recompilation.
 - Third, navigate to the UI directory and run npm start to start the UI.
 
+## Iter3 - Segfault
+### Application progress report:
+
+In iteration 3, we took a deeper dive into the CRUD methods specifically on the Dashboard page: fetching data as well as updating data based on user preference. We also leverage CRUD methods to allow the user to create an issue to a specific dashboard.
+
+We are able to make further feature enhancement on the filter component. Instead of having a drop-down of hard-coded values, we now have a drop-down that is now dynamic and is able to load values based on fetch data call, which gets real dashboard value such as title and ID and its rendered into the browse for a user to select when creating issues. We architecturally designed each component to capture its own state and synchronize states. We also tinker around with the UI specifically the UI table in the Dashboard page to create a table vertically.
+
+### Member contributions:
+
+- Eric Cheng:
+
+Collaborated with team/shared code with the team on functions related to the dashboard page, the filter component, and issueEdit;
+
+- Hui Li:
+
+Collaborated with team/shared code with the team on functions related to the dashboard page, the filter component, and issueEdit; Implemented the UI and API for creating dashboards and tickets feature.
+
+- Qiang Fang:
+
+Collaborated with the team, implement dashboard page, filter, issueEdit page, backlog page. Implement UI and API; Share ideas and debugging. Deploy the project.
+
 ## Iteration 2:
 ### Summary of Work Completed:
-- As we enter into Iteration 2 of the project we completed all the neccesary routings to the various components of the scrumboard application. After finalizing the structure of how UI of the application will be, we focused together as a collaboration on building the Dashboard component of the application. This includes having the ability to move the status of a ticket and will render automatically on the DOM. In iteration 2, we also explored shifting our backend to point to the database cloud but ran into some issues that we are working through via separate branches. 
+- As we enter into Iteration 2 of the project we completed all the neccesary routings to the various components of the scrumboard application. After finalizing the structure of how UI of the application will be, we focused together as a collaboration on building the Dashboard component of the application. This includes having the ability to move the status of a ticket and will render automatically on the DOM. In iteration 2, we also explored shifting our backend to point to the database cloud but ran into some issues that we are working through via separate branches.
 
 ![Home2](/images/homepage.png)
 ![Dashboard2](/images/Dashboard2.png)
