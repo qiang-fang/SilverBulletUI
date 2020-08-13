@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Silver Bullet Scrumboard - UI",
   "main": "index.js",
+  "engines": {
+    "node": "10.x",
+    "npm": "6.x"
+  },
   "scripts": {
     "#start": "UI server. HMR is enabled in dev mode.",
     "##start": "nodemon -w server -w .env server/uiserver.js",
@@ -19,7 +23,8 @@
     "watch-server-hmr": "webpack -w --config webpack.serverHMR.js",
     "#dev-all": "Dev mode: watch for server changes and start UI server",
     "dev-all": "rm dist/* && npm run watch-server-hmr & sleep 5 && npm start",
-    "dev": "npm run watch-server-hmr"
+    "dev": "npm run watch-server-hmr",
+    "heroku-postbuild": "npm run compile && ln -fs ../node_modules/bootstrap/distpublic/bootstrap"
   },
   "repository": {
     "type": "git",
