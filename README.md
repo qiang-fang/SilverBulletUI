@@ -19,7 +19,7 @@ Heroku Links: https://silverbullet-ui-segfault.herokuapp.com
 - Second, navigate to the UI directory and run npm run watch-server-hmr to watch files in the UI for hot module replacement recompilation.
 - Third, navigate to the UI directory and run npm start to start the UI.
 
-## Iter3 - Segfault
+## Iteration3:
 ### Application progress report:
 
 In iteration 3, we took a deeper dive into the CRUD methods specifically on the Dashboard page: fetching data as well as updating data based on user preference. We also leverage CRUD methods to allow the user to create an issue to a specific dashboard.
