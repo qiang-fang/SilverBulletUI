@@ -19,7 +19,7 @@ import UserContext from './UserContext.js';
 class IssueRowPlain extends React.Component {
   render() {
     const {
-      issue, location: { search }, nextStage, deleteIssue, index, id,
+      issue, location: { search }, nextStage, id,
     } = this.props;
     const user = this.context;
     const disabled = !user.signedIn;
@@ -31,25 +31,25 @@ class IssueRowPlain extends React.Component {
     const closeTooltip = (
       <Tooltip id="close-tooltip" placement="top">Next Stage</Tooltip>
     );
-    const deleteTooltip = (
-      <Tooltip id="delete-tooltip" placement="top">Delete Issue</Tooltip>
-    );
+    // const deleteTooltip = (
+    //   <Tooltip id="delete-tooltip" placement="top">Delete Issue</Tooltip>
+    // );
     function onNext(e) {
       e.preventDefault();
       nextStage(id);
     }
-    function onDelete(e) {
-      e.preventDefault();
-      deleteIssue(index);
-    }
+    // function onDelete(e) {
+    //   e.preventDefault();
+    //   deleteIssue(index);
+    // }
 
     //   const issue = props.issue;
     const tableRow = (
       <tr>
         <td>{issue.id}</td>
-        <td>{issue.dashboardId}</td>
-        <td>{issue.status}</td>
-        {/* <td>{issue.owner}</td> */}
+        {/* <td>{issue.dashboardId}</td> */}
+        {/* <td>{issue.status}</td> */}
+        <td>{issue.owner}</td>
         {/* <td>{issue.created.toDateString()}</td> */}
         {/* <td>{issue.effort}</td> */}
         {/* <td>{issue.due ? issue.due.toDateString() : ''}</td> */}
@@ -76,11 +76,11 @@ class IssueRowPlain extends React.Component {
           </OverlayTrigger>
           {/* {' | '} */}
           {' '}
-          <OverlayTrigger delayShow={1000} overlay={deleteTooltip}>
+          {/* <OverlayTrigger delayShow={1000} overlay={deleteTooltip}>
             <Button disabled={disabled} bsSize="xsmall" onClick={onDelete}>
               <Glyphicon glyph="trash" />
             </Button>
-          </OverlayTrigger>
+          </OverlayTrigger> */}
           {/* <button type="button" onClick={() => { deleteIssue(index); }}>
           Delete
         </button> */}
@@ -116,9 +116,9 @@ export default function IssueTable({ issues, nextStage, deleteIssue }) {
       <thead>
         <tr>
           <th>ID</th>
-          <th>Dashboard ID</th>
-          <th>Status</th>
-          {/* <th>Owenr</th> */}
+          {/* <th>Dashboard ID</th> */}
+          {/* <th>Status</th> */}
+          <th>Owenr</th>
           {/* <th>Created</th> */}
           {/* <th>Effort</th> */}
           {/* <th>Due Date</th> */}

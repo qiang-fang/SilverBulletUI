@@ -231,6 +231,7 @@ class IssueList extends React.Component {
     }
     return (
       <React.Fragment>
+        <h3>Backlog</h3>
         <Panel>
           <Panel.Heading>
             <Panel.Title toggle>Filter</Panel.Title>

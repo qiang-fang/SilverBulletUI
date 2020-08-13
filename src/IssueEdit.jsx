@@ -29,6 +29,10 @@ class IssueEdit extends React.Component {
         id title status owner
         effort created due description
       }
+      dashboardList {
+        title
+        id
+      }
     }`;
     const { params: { id } } = match;
     const result = await graphQLFetch(query, { id: parseInt(id, 10) }, showError);
@@ -38,16 +42,19 @@ class IssueEdit extends React.Component {
   constructor() {
     super();
     const issue = store.initialData ? store.initialData.issue : null;
+    const dashboardList = store.initialData ? store.initialData.dashboardList : null;
     delete store.initialData;
     this.state = {
       issue,
       invalidFields: {},
       showingValidation: false,
+      dashboardList,
       // toastVisible: false,
       // toastMessage: '',
       // toastType: 'success',
     };
     this.onChange = this.onChange.bind(this);
+    this.onChangedashboard = this.onChangedashboard.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onValidityChange = this.onValidityChange.bind(this);
     this.dismissValidation = this.dismissValidation.bind(this);
@@ -78,6 +85,14 @@ class IssueEdit extends React.Component {
     }));
   }
 
+  onChangedashboard(event, naturalValue) {
+    const { name, value: textValue } = event.target;
+    const value = naturalValue === undefined ? textValue : naturalValue;
+    this.setState(prevState => ({
+      dashboardId: value,
+    }));
+  }
+
   onValidityChange(event, valid) {
     const { name } = event.target;
     this.setState((prevState) => {
@@ -90,8 +105,11 @@ class IssueEdit extends React.Component {
   async handleSubmit(e) {
     e.preventDefault();
     this.showValidation();
-    const { issue, invalidFields } = this.state;
-    // console.log(issue); // eslint-disable-line no-console
+    const { issue, invalidFields, dashboardId } = this.state;
+    // console.log("this.state", this.state);
+    // console.log("issues", issue);
+    // console.log("invalidfields", invalidFields);
+    // console.log("dashboardId", dashboardId);
     if (Object.keys(invalidFields).length !== 0) return;
     const query = `mutation issueUpdate(
       $id: Int!
@@ -101,45 +119,37 @@ class IssueEdit extends React.Component {
           id: $id
           changes: $changes
         ) {
-          id title status owner
+          id dashboardId title status owner
           effort created due description
         }
     }`;
     const { id, created, ...changes } = issue;
+    // console.log("query", query);
+    // console.log("id", id);
+    // console.log("Created", created);
+    // console.log("...changes", changes);
+    // console.log("issue", issue);
     const { showSuccess, showError } = this.props;
+    changes.dashboardId = parseInt(dashboardId, 10);
     const data = await graphQLFetch(query, { changes, id }, showError);
+    // console.log('type of changes',typeof(changes));
+    // changes.dashboardId = dashboardId;
+    // console.log("data:", data);
     if (data) {
       this.setState({ issue: data.issueUpdate });
-      // alert('Updated issue successfully'); // eslint-disable-line no-alert
       showSuccess('Updated issue successfully');
     }
   }
 
   async loadData() {
-    // const query = `query issue($id: Int!) {
-    //   issue(id: $id) {
-    //     id title status owner
-    //     effort created due description
-    //   }
-    // }`;
-
-    // const { match: { params: { id } } } = this.props;
-    // const data = await graphQLFetch(query, { id: parseInt(id, 10) }, this.showError);
-
-    // if (data) {
-    //   const { issue } = data;
-    //   // issue.due = issue.due ? issue.due.toDateString() : '';
-    //   // issue.effort = issue.effort != null ? issue.effort.toString() : '';
-    //   issue.owner = issue.owner != null ? issue.owner : '';
-    //   issue.description = issue.description != null ? issue.description : '';
-    //   this.setState({ issue, invalidFields: {} });
-    // } else {
-    //   this.setState({ issue: {}, invalidFields: {} });
-    // }
-    const { match, showError } = this.props;
+    const { match, showError} = this.props;
     const data = await IssueEdit.fetchData(match, null, showError);
-
-    this.setState({ issue: data ? data.issue : {}, invalidFields: {} });
+    this.setState({
+      issue: data ? data.issue : {},
+      invalidFields: {},
+      options: data.dashboardList,
+      dashboardId: data.dashboardList[0].id,
+    });
   }
 
   showValidation() {
@@ -150,26 +160,9 @@ class IssueEdit extends React.Component {
     this.setState({ showingValidation: false });
   }
 
-  // showSuccess(message) {
-  //   this.setState({
-  //     toastVisible: true, toastMessage: message, toastType: 'success',
-  //   });
-  // }
-
-  // showError(message) {
-  //   this.setState({
-  //     toastVisible: true, toastMessage: message, toastType: 'danger',
-  //   });
-  // }
-
-  // dismissToast() {
-  //   this.setState({ toastVisible: false });
-  // }
-
   render() {
     const { issue } = this.state;
     if (issue == null) return null;
-
     const { issue: { id } } = this.state;
     const { match: { params: { id: propsId } } } = this.props;
     if (id == null) {
@@ -192,10 +185,10 @@ class IssueEdit extends React.Component {
     const { issue: { title, status } } = this.state;
     const { issue: { owner, effort, description } } = this.state;
     const { issue: { created, due } } = this.state;
+    const { issue: { dashboardId } } = this.state;
     // const { toastVisible, toastMessage, toastType } = this.state;
-
+    console.log("this.state in render:", this.state);
     const user = this.context;
-
     return (
       <Panel>
         <Panel.Heading>
@@ -209,6 +202,19 @@ class IssueEdit extends React.Component {
                 <FormControl.Static>
                   {created.toDateString()}
                 </FormControl.Static>
+              </Col>
+            </FormGroup>
+            <FormGroup>
+              <Col componentClass={ControlLabel} sm={3}>Dashboard Title</Col>
+              <Col sm={9}>
+                <FormControl
+                  componentClass="select"
+                  name="dashboardId"
+                  value={dashboardId}
+                  onChange={this.onChangedashboard}
+                >
+                  {this.state.options.map(option => <option value={option.id}>{option.title}</option>)}
+                </FormControl>
               </Col>
             </FormGroup>
             <FormGroup>

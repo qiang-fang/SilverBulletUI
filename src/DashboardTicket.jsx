@@ -106,13 +106,12 @@ class DashboardTicket extends React.Component {
     //   ? store.initialData.issue
     //   : null;
     const initialData = store.initialData || { ticketList: {} };
-    console.log('*****inside constructor initial data:', initialData);
+    // console.log('*****inside constructor initial data:', initialData);
     const {
       ticketList: { issues, pages }, issue: selectedIssue, dashboardList: options,
     } = initialData;
     // const options = DashboardTicket.loadOptions();
     // const options = [];
-    // console.log('initilaze options: ', options);
     const newIssues = issues.filter(issue => issue.status === 'ToDo');
     const assignedIssues = issues.filter(issue => issue.status === 'InProgress');
     const fixedIssues = issues.filter(issue => issue.status === 'Done');
@@ -139,7 +138,7 @@ class DashboardTicket extends React.Component {
     // this.showSuccess = this.showSuccess.bind(this);
     // this.showError = this.showError.bind(this);
     // this.dismissToast = this.dismissToast.bind(this);
-    console.log('at the end of constructor: ', this.state);
+    // console.log('at the end of constructor: ', this.state);
   }
 
   // This method is called as soon as the IssueList component’s representation has been
@@ -369,24 +368,21 @@ class DashboardTicket extends React.Component {
         </PageLink>
       ));
     }
-    console.log('render before return: ', options);
+    // console.log('render before return: ', options);
     return (
       <React.Fragment>
-        <Row>
-          <Col>
-            <Panel>
-              <Panel.Heading>
-                <Panel.Title toggle>Filter</Panel.Title>
-              </Panel.Heading>
-              <Panel.Body collapsible>
-                <IssueFilter
-                  urlBase="/dashboard"
-                  options={options}
-                />
-              </Panel.Body>
-            </Panel>
-          </Col>
-        </Row>
+        <h3>My Dashboard</h3>
+        <Panel>
+          <Panel.Heading>
+            <Panel.Title toggle>Filter</Panel.Title>
+          </Panel.Heading>
+          <Panel.Body collapsible>
+            <IssueFilter
+              urlBase="/dashboard"
+              options={options}
+            />
+          </Panel.Body>
+        </Panel>
         <Row>
           <Col md={4}>
             <Panel>

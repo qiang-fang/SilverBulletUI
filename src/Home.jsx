@@ -5,7 +5,7 @@ import React from 'react';
 // import image from '../images/Acadia.jpg'
 
 // import { BrowserRouter, Route, Link } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Dashboard from './DashboardTicket.jsx';
 import Issues from './IssueList.jsx';
 
@@ -33,7 +33,7 @@ class Home extends React.Component {
         </span>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <span>
-          <Link to="/issues">
+          <a href="/issues">
             <button
               type="button"
               className="btn btn-primary"
@@ -41,7 +41,7 @@ class Home extends React.Component {
             >
               BackLog
             </button>
-          </Link>
+          </a>
         </span>
       </div>
     );
