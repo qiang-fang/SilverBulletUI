@@ -19,6 +19,20 @@ Heroku Links: https://silverbullet-ui-segfault.herokuapp.com
 - Second, navigate to the UI directory and run npm run watch-server-hmr to watch files in the UI for hot module replacement recompilation.
 - Third, navigate to the UI directory and run npm start to start the UI.
 
+## screenshots
+![home](/images/homepage.png)
+
+![dashboard](/images/dashboardpage.png)
+
+![backlog](/images/backlogpage.png)
+
+![createdashboard](/images/createdashboardpage.png)
+
+![createticket](/images/createticketpage.png)
+
+![editticket](/images/editticketpage.png)
+
+
 ## Iteration3:
 ### Application progress report:
 
