@@ -48,7 +48,8 @@ class IssueEdit extends React.Component {
       issue,
       invalidFields: {},
       showingValidation: false,
-      dashboardList,
+      options: dashboardList,
+      dashboardId: dashboardList[0].id,
       // toastVisible: false,
       // toastMessage: '',
       // toastType: 'success',
@@ -187,12 +188,11 @@ class IssueEdit extends React.Component {
     const { issue: { created, due } } = this.state;
     const { issue: { dashboardId } } = this.state;
     // const { toastVisible, toastMessage, toastType } = this.state;
-    console.log("this.state in render:", this.state);
     const user = this.context;
     return (
       <Panel>
         <Panel.Heading>
-          <Panel.Title>{`Editing issue: ${id}`}</Panel.Title>
+          <Panel.Title>{`Editing ticket: ${id}`}</Panel.Title>
         </Panel.Heading>
         <Panel.Body>
           <Form horizontal onSubmit={this.handleSubmit}>

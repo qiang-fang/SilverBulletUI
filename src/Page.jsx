@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Navbar, Nav, NavDropdown,
+  Navbar, Nav, NavItem, NavDropdown,
   MenuItem, Glyphicon,
   Grid,
 } from 'react-bootstrap';
@@ -20,10 +20,19 @@ function NavBar({ user, onUserChange }) {
   return (
     <Navbar fluid>
       <Navbar.Header>
-        <Link to="/home">
-          <Navbar.Brand className="hi">Silver Bullet Scrumboard</Navbar.Brand>
-        </Link>
+        <Navbar.Brand>Silver Bullet Scrumboard</Navbar.Brand>
       </Navbar.Header>
+      <Nav>
+        <LinkContainer exact to="/">
+          <NavItem>Home</NavItem>
+        </LinkContainer>
+        <LinkContainer to="/dashboard">
+          <NavItem>Dashboard</NavItem>
+        </LinkContainer>
+        <LinkContainer to="/issues">
+          <NavItem>Backlog</NavItem>
+        </LinkContainer>
+      </Nav>
       <Nav pullRight>
         <IssueAddNavItem user={user} />
         <DashboardAddNavItem user={user} />

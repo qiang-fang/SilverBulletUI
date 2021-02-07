@@ -1,7 +1,7 @@
 # Silver Bullet Scrumboard 
 ## Group Members:
-- Eric Cheng
 - Qiang Fang
+- Eric Cheng
 - Hui Li
 
 UI Repository: https://github.ccs.neu.edu/NEU-CS5610-SU20/GroupProject_Segfault_UI

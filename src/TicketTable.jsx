@@ -118,7 +118,7 @@ export default function IssueTable({ issues, nextStage, deleteIssue }) {
           <th>ID</th>
           {/* <th>Dashboard ID</th> */}
           {/* <th>Status</th> */}
-          <th>Owenr</th>
+          <th>Owner</th>
           {/* <th>Created</th> */}
           {/* <th>Effort</th> */}
           {/* <th>Due Date</th> */}
